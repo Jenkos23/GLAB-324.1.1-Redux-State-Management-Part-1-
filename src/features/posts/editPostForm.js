@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import { postUpdated } from "./postsSlice";
+import { postUpdated, selectPostById} from "./postsSlice";
 
 
 
@@ -9,8 +9,8 @@ import { postUpdated } from "./postsSlice";
 export const EditPostForm = ({match}) => {
     const {postId} = match.params
 
-    const post = useSelector(state => 
-        state.posts.find(post => post.id === postId)
+    const post = useSelector(state =>  selectPostById(state, postId)
+   
     )
 
     const [title, setTitle] = useState(post.title)
